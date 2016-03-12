@@ -6,15 +6,15 @@
             opts = $.extend({ addCss: true, //if set to false you have to add 'display:block;position:absolute;' to the css of the moving object
                 maxHeight: (590), //height bound for moving
                 maxWidth: (750), //width bound for moving
-                minDuration: 2000, //minimum length of animation
-                deltaDuration: 1000 //maximum random number to be added to the minDuration
+                minDuration: 1000, //minimum length of animation
+                deltaDuration: 2000 //maximum random number to be added to the minDuration
             }, options);
 
             return this.each(function () {
                 var o = $(this).attr('data-move', true);
                 //Add display:block;position:absolute; to attribute style. if addCss = true (default)
-                if (opts.addCss)
-                    o.attr('style', 'display:block;position:absolute;');
+                // if (opts.addCss)
+                //     o.attr('style', 'display:block;position:absolute;');
 
                 moveObject(o);
             });

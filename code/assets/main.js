@@ -24,7 +24,6 @@ $(document).ready(function (e) {
     }
 
     //Animate our pucks
-    $('.puck').movingBubble({ addCss: false });
     $('.puck').on("click", function(){
     	$(this).remove();
     	scoreTally();
@@ -41,7 +40,6 @@ $(document).ready(function (e) {
 
 	function timeRemaining(){
 		return "Not yet implemented"
-
 	}
 
 	function gameOver(){
@@ -51,10 +49,34 @@ $(document).ready(function (e) {
 	function updateHighScore(){
 		return "Not yet implemented"
 	}
-	
+
+	function addOverlay(){
+		var output = "<div id=\"messageOverlay\"><h1>Ready?</h1></div>";
+		$('#gameArea').append(output);
+	}
+
+	function removeOverlay (){
+		$('#messageOverlay').remove();
+	}
+
+	function ping () {
+		console.log('ping function fired');
+	}
+
+	$("#messageOverlay" ).on("click", function (){
+		removeOverlay();
+		ping();
+		$('.puck').movingBubble();
+	});
+
+	// start movement: $('.puck').movingBubble();
+	// stop movement: $('.puck').stop();
+	// toggle hidden pucks: $('.puck').toggle();
+
 	// TODO: implement a timer loop using setInterval to check if we have run out of time yet
 	// https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval
 	// TODO: implement READY? screen on page load and wait for the a click to start the game
+	// TODO: break out ready screen into more functions for game start
 	// TODO: implement Game Over! screen
 	// TODO: implement reset button
 	// TODO: pass config vars through to library rather than hand code
