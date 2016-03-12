@@ -12,7 +12,7 @@ $(document).ready(function (e) {
     // add # of divs to page.
     for (var i = 0; i < numberOfDivs; i++) {
         var c = Math.floor(Math.random() * 10);
-		var x = Math.floor(Math.random() * maxWidth);
+	var x = Math.floor(Math.random() * maxWidth);
         var y = Math.floor(Math.random() * maxHeight);
         //Create div with class c0/c10 to give them random and different colors
         var p = $('<div/>')
@@ -51,6 +51,9 @@ $(document).ready(function (e) {
 	function updateHighScore(){
 		return "Not yet implemented"
 	}
+	
+	//TODO: implement a timer loop using setInterval to check if we have run out of time yet
+	// https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval
 
 });
 
