@@ -52,8 +52,14 @@ $(document).ready(function (e) {
 		return "Not yet implemented"
 	}
 	
-	//TODO: implement a timer loop using setInterval to check if we have run out of time yet
+	// TODO: implement a timer loop using setInterval to check if we have run out of time yet
 	// https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval
-
+	// TODO: implement READY? screen on page load and wait for the a click to start the game
+	// TODO: implement Game Over! screen
+	// TODO: implement reset button
+	// TODO: pass config vars through to library rather than hand code
+	// TODO: implement levels with increasing numbers of pucks
+	// TODO: persistant high scores with user input names
+	
 });
 
