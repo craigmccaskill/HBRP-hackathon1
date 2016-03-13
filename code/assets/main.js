@@ -11,7 +11,7 @@ $(document).ready(function (e) {
 
     // add # of divs to page.
     for (var i = 0; i < numberOfDivs; i++) {
-        var c = Math.floor(Math.random() * 10);
+        var c = Math.floor(Math.random() * 13);
 	var x = Math.floor(Math.random() * maxWidth);
         var y = Math.floor(Math.random() * maxHeight);
         //Create div with class c0/c10 to give them random and different colors

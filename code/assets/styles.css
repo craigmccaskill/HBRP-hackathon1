@@ -7,12 +7,15 @@ bubbles
 .c2{background:#ffffd7;}
 .c3{background:#af8700;}
 .c4{background:#d75f00;}
-.c5{background-image: url(Auggie.jpg); padding-bottom: 9%; padding-right: 5%}
+.c5{background:#d70000;}
 .c6{background:#af005f;}
 .c7{background:#5f5faf;}
 .c8{background:#0087ff;}
 .c9{background:#00afaf;}
 .c10{background:#5f8700;}
+.c11{background-image: url(Auggie.jpg); background-size: cover;}
+.c12{background-image: url(Ben.jpg); background-size: cover; padding-bottom: 1%;}
+.c13{background-image: url(Ben.jpg); background-size: cover;}
 
 .puck {
 	height:50px;
