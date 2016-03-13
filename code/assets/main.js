@@ -5,7 +5,7 @@ $(document).ready(function (e) {
     var score = 0;
     var pucksRemaining = numberOfDivs;
     var highScore = 0;
-    var timer = 0;
+    var timer = 60;
     var maxHeight = 590;
     var maxWidth = 750;
 
@@ -83,5 +83,36 @@ $(document).ready(function (e) {
 	// TODO: implement levels with increasing numbers of pucks
 	// TODO: persistant high scores with user input names
 	
+	// found this countdown at http://jsfiddle.net/mrwilk/qVuHW/  -- I only used the top countdown timer
+	function countdown( elementName, minutes, seconds )
+	{
+	    var element, endTime, hours, mins, msLeft, time;
+
+	    function twoDigits( n )
+	    {
+	        return (n <= 9 ? "0" + n : n);
+	    }
+
+	    function updateTimer()
+	    {
+	        msLeft = endTime - (+new Date);
+	        if ( msLeft < 1000 ) {
+	            element.innerHTML = "countdown's over!";
+	        } else {
+	            time = new Date( msLeft );
+	            hours = time.getUTCHours();
+	            mins = time.getUTCMinutes();
+	            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
+	            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+	        }
+	    }
+
+	    element = document.getElementById( elementName );
+	    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+	    updateTimer();
+	};
+
+	countdown( "countdown", 0, timer );
+
 });
 
