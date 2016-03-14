@@ -1,11 +1,11 @@
 // All our code goes here
 
 $(document).ready(function (e) {
-    var numberOfDivs = 3;
+    var numberOfDivs = 10;
     var score = 0;
     var pucksRemaining = numberOfDivs;
     var highScore = 0;
-    var timer = 10;
+    var timer = 30;
     var maxHeight = 590;
     var maxWidth = 750;
     var elementName = "countdown";
@@ -31,7 +31,10 @@ $(document).ready(function (e) {
     	scoreTally();
     });
 
-
+   /* function pointTally() {
+    	score += 5;
+	    return;
+    } */
 	
 	function scoreTally() {
 	    pucksRemaining--;
@@ -40,6 +43,8 @@ $(document).ready(function (e) {
 	    } else {
 	    	console.log(pucksRemaining + ' Pucks remaining');
 	    }
+	    score += 5;
+	    return;
 	};
 
 	function countdown( elementName, seconds ) {
@@ -60,7 +65,9 @@ $(document).ready(function (e) {
 	        if ( msLeft < 1000 ) {
 	            element.innerHTML = "Times Up!";
 	            gameOver();
-	            $('#gameArea').append('<div id=\"messageOverlay\"><h1>Game Over, Yo!</h1></div>');
+	        } else if (pucksRemaining == 0){
+	        	gameOver();
+	        	element.innerHTML = "You don't seem to need the rest of your time! Good job!";
 	        } else {
 	            time = new Date( msLeft );
 	            seconds = (time.getUTCMinutes() * 60) + time.getUTCSeconds();
@@ -75,7 +82,8 @@ $(document).ready(function (e) {
 	};
 
 	function gameOver(){
-		console.log('Game over! You caught ' + numberOfDivs + ' pucks in ' + timer + ' seconds!')
+		console.log('Game over! You caught ' + numberOfDivs + ' pucks in ' + timer + ' seconds!');
+		$('#gameArea').append('<div id=\"messageOverlay\"><h1>Game Over, Yo!<br>You\'re score is: ' + score + '</h1></div>');
 	}
 
 	function updateHighScore(){
@@ -106,11 +114,11 @@ $(document).ready(function (e) {
 	// stop movement: $('.puck').stop();
 	// toggle hidden pucks: $('.puck').toggle();
 
-	// TODO: implement a timer loop using setInterval to check if we have run out of time yet
+	// Done: implement a timer loop using setInterval to check if we have run out of time yet
 	// https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval
-	// TODO: implement READY? screen on page load and wait for the a click to start the game
+	// Done: implement READY? screen on page load and wait for the a click to start the game
 	// TODO: break out ready screen into more functions for game start
-	// TODO: implement Game Over! screen
+	// Done: implement Game Over! screen
 	// TODO: implement reset button
 	// TODO: pass config vars through to library rather than hand code
 	// TODO: implement levels with increasing numbers of pucks
