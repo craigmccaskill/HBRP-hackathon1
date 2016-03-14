@@ -5,9 +5,10 @@ $(document).ready(function (e) {
     var score = 0;
     var pucksRemaining = numberOfDivs;
     var highScore = 0;
-    var timer = 60;
+    var timer = 10;
     var maxHeight = 590;
     var maxWidth = 750;
+    var elementName = "countdown";
 
     // add # of divs to page.
     for (var i = 0; i < numberOfDivs; i++) {
@@ -21,6 +22,7 @@ $(document).ready(function (e) {
         	.css("top", y + 'px');
         //Add object to gameArea
         $('#gameArea').append(p);
+         
     }
 
     //Animate our pucks
@@ -28,6 +30,8 @@ $(document).ready(function (e) {
     	$(this).remove();
     	scoreTally();
     });
+
+
 	
 	function scoreTally() {
 	    pucksRemaining--;
@@ -36,14 +40,42 @@ $(document).ready(function (e) {
 	    } else {
 	    	console.log(pucksRemaining + ' Pucks remaining');
 	    }
-	    };
+	};
 
-	function timeRemaining(){
-		return "Not yet implemented"
-	}
+	function countdown( elementName, seconds ) {
+	    var element, endTime, msLeft, time;
+
+	    function digits( n ) {
+	        if (n >= 100) {
+	        	return n;
+	        } else if (n <= 99) {
+	        	return ("0" + n)
+	        } else {
+	        	return (n <= 9 ? "0" + n : n);
+	        }
+	    }
+
+	    function updateTimer() {
+	        msLeft = endTime - (+new Date);
+	        if ( msLeft < 1000 ) {
+	            element.innerHTML = "Times Up!";
+	            gameOver();
+	            $('#gameArea').append('<div id=\"messageOverlay\"><h1>Game Over, Yo!</h1></div>');
+	        } else {
+	            time = new Date( msLeft );
+	            seconds = (time.getUTCMinutes() * 60) + time.getUTCSeconds();
+	            element.innerHTML = (digits( seconds ));
+	            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+	        }
+	    }
+
+	    element = document.getElementById( elementName );
+	    endTime = (+new Date) + (1000 * seconds);
+	    updateTimer();
+	};
 
 	function gameOver(){
-		console.log('Game over! You caught ' + numberOfDivs + ' pucks in ' + timeRemaining() + ' seconds!')
+		console.log('Game over! You caught ' + numberOfDivs + ' pucks in ' + timer + ' seconds!')
 	}
 
 	function updateHighScore(){
@@ -67,6 +99,7 @@ $(document).ready(function (e) {
 		removeOverlay();
 		ping();
 		$('.puck').movingBubble();
+		countdown( "countdown", timer );
 	});
 
 	// start movement: $('.puck').movingBubble();
@@ -83,36 +116,6 @@ $(document).ready(function (e) {
 	// TODO: implement levels with increasing numbers of pucks
 	// TODO: persistant high scores with user input names
 	
-	// found this countdown at http://jsfiddle.net/mrwilk/qVuHW/  -- I only used the top countdown timer
-	function countdown( elementName, minutes, seconds )
-	{
-	    var element, endTime, hours, mins, msLeft, time;
-
-	    function twoDigits( n )
-	    {
-	        return (n <= 9 ? "0" + n : n);
-	    }
-
-	    function updateTimer()
-	    {
-	        msLeft = endTime - (+new Date);
-	        if ( msLeft < 1000 ) {
-	            element.innerHTML = "countdown's over!";
-	        } else {
-	            time = new Date( msLeft );
-	            hours = time.getUTCHours();
-	            mins = time.getUTCMinutes();
-	            element.innerHTML = (hours ? hours + ':' + twoDigits( mins ) : mins) + ':' + twoDigits( time.getUTCSeconds() );
-	            setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
-	        }
-	    }
-
-	    element = document.getElementById( elementName );
-	    endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
-	    updateTimer();
-	};
-
-	countdown( "countdown", 0, timer );
-
+	
 });
 

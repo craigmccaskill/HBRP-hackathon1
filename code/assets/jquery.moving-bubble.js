@@ -17,6 +17,7 @@
                 //     o.attr('style', 'display:block;position:absolute;');
 
                 moveObject(o);
+
             });
         },
         stop: function () {
@@ -59,4 +60,5 @@
             $.error('Method ' + method + ' does not exist on jQuery.movingBubble');
         }
     }
+    
 })(jQuery);
